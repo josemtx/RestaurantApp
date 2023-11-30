@@ -48,7 +48,6 @@ public class Address {
         this.city = city;
     }
 
-    // Método toString para representar la dirección como una cadena de texto
     @Override
     public String toString() {
         return "Address{" +

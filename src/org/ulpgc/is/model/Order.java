@@ -50,7 +50,7 @@ public class Order {
     }
 
     // Método para calcular el precio total del pedido
-    public int calculateTotalPrice() {
+    public int price() {
         int total = 0;
         for (OrderItem item : this.items) {
             total += item.getDish().getPrice() * item.getQuantity();
@@ -65,7 +65,7 @@ public class Order {
         for (OrderItem item : this.items) {
             sb.append(item.toString()).append("\n");
         }
-        sb.append("Total Price: ").append(calculateTotalPrice());
+        sb.append("Total Price: ").append(price());
         return sb.toString();
     }
 

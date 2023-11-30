@@ -9,7 +9,7 @@ public class Customer {
     private String name;
     private String surname;
     private Address address;
-    private List<Order> orders; // Almacena los pedidos del cliente
+    private List<Order> orders;
 
     public Customer(String name, String surname, Address address) {
         this.id = nextId++;
@@ -48,7 +48,6 @@ public class Customer {
         this.address = address;
     }
 
-    // Métodos para manejar los pedidos
     public void addOrder(Order order) {
         if (order != null) {
             this.orders.add(order);

@@ -7,7 +7,6 @@ public class Dish {
     private String description;
     private int price;
 
-    // Constructor
     public Dish(String name, String description, int price) {
         this.id = nextId++;
         this.name = name;
@@ -15,7 +14,6 @@ public class Dish {
         this.price = price;
     }
 
-    // Getters y setters para 'name', 'description' y 'price'
     public String getName() {
         return name;
     }

@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Menu {
     private String name;
-    private List<Dish> dishes; // Lista para manejar múltiples platos
-    private MenuType type; // Tipo de menú, utilizando la enumeración MenuType
+    private List<Dish> dishes;
+    private MenuType type;
 
     // Constructor
     public Menu(String name, MenuType type) {
@@ -15,7 +15,6 @@ public class Menu {
         this.dishes = new ArrayList<>();
     }
 
-    // Getters y setters para 'name' y 'type'
     public String getName() {
         return name;
     }
@@ -32,7 +31,6 @@ public class Menu {
         this.type = type;
     }
 
-    // Métodos para manejar la lista de platos
     public void addDish(Dish dish) {
         if (dish != null && !this.dishes.contains(dish)) {
             this.dishes.add(dish);
@@ -44,8 +42,6 @@ public class Menu {
     }
 
     public List<Dish> getDishes() {
-        return new ArrayList<>(this.dishes); // Devuelve una copia de la lista para evitar la modificación externa
+        return new ArrayList<>(this.dishes);
     }
-
-    // Puedes agregar más lógica y métodos según sea necesario
 }

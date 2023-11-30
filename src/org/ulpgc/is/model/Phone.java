@@ -15,12 +15,14 @@ public class Phone {
         this.number = number;
     }
 
-    // Método para validar el número de teléfono.
-    // La validación específica dependerá de tus requisitos, como la longitud del número,
-    // si debe contener solo dígitos, prefijos específicos, etc.
-    public boolean isValid() {
-        // Ejemplo de validación básica: número de 10 dígitos sin caracteres especiales ni letras
-        return number.matches("\\d{10}");
-    }
+    public boolean isValid(){
+        number.replaceAll("[\\s-]+", "");
+        if (number.matches("\\d{9}")){
+            return true;
+        } else {
+            this.number = "XXXX";
+            return false;
+        }
+}
 }
 

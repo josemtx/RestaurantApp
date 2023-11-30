@@ -7,10 +7,9 @@ public class Restaurant {
     private static int nextId = 1;
     private int id;
     private String name;
-    private Phone phone; // Suponiendo que la clase Phone ya está definida
-    private List<Menu> menus; // Lista para manejar múltiples menús
+    private Phone phone;
+    private List<Menu> menus;
 
-    // Constructor
     public Restaurant(String name, Phone phone) {
         this.id = nextId++;
         this.name = name;
@@ -18,7 +17,6 @@ public class Restaurant {
         this.menus = new ArrayList<>();
     }
 
-    // Getters y setters para 'name' y 'phone'
     public Integer getId() {
         return id;
     }
@@ -38,7 +36,6 @@ public class Restaurant {
         this.phone = phone;
     }
 
-    // Métodos para manejar la lista de menús
     public void addMenu(Menu menu) {
         if (menu != null && !this.menus.contains(menu)) {
             this.menus.add(menu);
@@ -50,17 +47,16 @@ public class Restaurant {
     }
 
     public List<Menu> getMenus() {
-        return new ArrayList<>(this.menus); // Devuelve una copia de la lista para evitar la modificación externa
+        return new ArrayList<>(this.menus);
     }
 
-    // Método para obtener un menú por su nombre
     public Menu getMenuByName(String name) {
         for (Menu menu : this.menus) {
             if (menu.getName().equals(name)) {
                 return menu;
             }
         }
-        return null; // Si no se encuentra un menú con ese nombre
+        return null;
     }
     @Override
     public String toString() {

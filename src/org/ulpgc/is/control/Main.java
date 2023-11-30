@@ -22,8 +22,8 @@ public class Main {
         orderManager.addCustomer(customer2);
 
         // ii. Crear dos restaurantes con validación de teléfono.
-        Restaurant restaurant1 = new Restaurant("Good Food", new Phone("1234567890"));
-        Restaurant restaurant2 = new Restaurant("Eat Well", new Phone("1234")); // Número intencionadamente no válido para la demostración
+        Restaurant restaurant1 = new Restaurant("Good Food", new Phone("123456789f"));
+        Restaurant restaurant2 = new Restaurant("Eat Well", new Phone("1234"));
         if (!restaurant1.getPhone().isValid()) {
             restaurant1.getPhone().setNumber("XXXX");
         }
@@ -64,7 +64,7 @@ public class Main {
         // x. Imprimir por pantalla el primer pedido del primer cliente, incluyendo el precio total.
         Order firstOrder = customer1.getOrders().get(0);
         System.out.println(firstOrder);
-        System.out.println("Total price of the order: " + firstOrder.calculateTotalPrice());
+        System.out.println("Total price of the order: " + firstOrder.price());
     }
 }
 

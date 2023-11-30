@@ -75,12 +75,6 @@ public class OrderManager {
         orders.put(newOrder.getId(), newOrder); // Registrar el pedido en el sistema
     }
 
-    // Método para obtener un pedido
-    public Order getOrder(int orderId) {
-        return orders.get(orderId);
-    }
-
-    // Método para obtener todos los pedidos de un cliente
     public List<Order> getOrdersByCustomer(int customerId) {
         List<Order> customerOrders = new ArrayList<>();
         for (Order order : orders.values()) {
