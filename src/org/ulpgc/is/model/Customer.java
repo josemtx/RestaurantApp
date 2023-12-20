@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Customer {
     private static int nextId = 1;
-    private int id;
+    private final int id;
     private String name;
     private String surname;
     private Address address;
-    private List<Order> orders;
+    private final List<Order> orders;
 
     public Customer(String name, String surname, Address address) {
         this.id = nextId++;

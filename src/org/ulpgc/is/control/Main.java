@@ -12,31 +12,34 @@ public class Main {
     }
 
     public static void init(OrderManager orderManager) {
-        // i. Crear dos clientes con sus direcciones.
-        Address address1 = new Address("123 Main St", 101, 12345, "Metropolis");
-        Address address2 = new Address("456 Elm St", 202, 54321, "Gotham");
+        // i. Create two customers with their addresses.
+        Address address1 = orderManager.createAddress("123 Main St", 101, 12345, "Metropolis");
+        Address address2 = orderManager.createAddress("456 Elm St", 202, 54321, "Gotham");
 
-        Customer customer1 = new Customer("John", "Doe", address1);
-        Customer customer2 = new Customer("Jane", "Smith", address2);
-        orderManager.addCustomer(customer1);
-        orderManager.addCustomer(customer2);
+        Customer customer1 = orderManager.createAndAddCustomer("John", "Doe", address1);
+        Customer customer2 = orderManager.createAndAddCustomer("Jane", "Smith", address2);
 
-        // ii. Crear dos restaurantes con validación de teléfono.
-        Restaurant restaurant1 = new Restaurant("Good Food", new Phone("123456789f"));
-        Restaurant restaurant2 = new Restaurant("Eat Well", new Phone("1234"));
+        // ii. Create two restaurants with phone validation.
+        Phone phone1 = orderManager.createPhone("123456789f");
+        Phone phone2 = orderManager.createPhone("1234");
+
+        Restaurant restaurant1 = orderManager.createAndAddRestaurant("Good Food", phone1);
+        Restaurant restaurant2 = orderManager.createAndAddRestaurant("Eat Well", phone2);
+
         if (!restaurant1.getPhone().isValid()) {
             restaurant1.getPhone().setNumber("XXXX");
         }
         if (!restaurant2.getPhone().isValid()) {
             restaurant2.getPhone().setNumber("XXXX");
         }
-        orderManager.addRestaurant(restaurant1);
-        orderManager.addRestaurant(restaurant2);
 
-        // iii. Crear tres platos diferentes.
-        Dish dish1 = new Dish("Pizza", "Delicious cheese pizza",13 );
-        Dish dish2 = new Dish("Burger", "Beef burger with special sauce", 16);
-        Dish dish3 = new Dish("Pasta", "Penne pasta in tomato sauce", 11);
+        // iii. Create three different dishes.
+        Dish dish1 = orderManager.createAndAddDish("Pizza", "Delicious cheese pizza",13 );
+        Dish dish2 = orderManager.createAndAddDish("Burger", "Beef burger with special sauce", 16);
+        Dish dish3 = orderManager.createAndAddDish("Pasta", "Penne pasta in tomato sauce", 11);
+
+        // The rest of the code remains the same...
+
         orderManager.addDish(dish1);
         orderManager.addDish(dish2);
         orderManager.addDish(dish3);

@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderManager {
-    private Map<Integer, Customer> customers = new HashMap<>();
-    private Map<Integer, Restaurant> restaurants = new HashMap<>();
-    private Map<Integer, Dish> dishes = new HashMap<>();
-    private Map<Integer, Order> orders = new HashMap<>();
+    private final Map<Integer, Customer> customers = new HashMap<>();
+    private final Map<Integer, Restaurant> restaurants = new HashMap<>();
+    private final Map<Integer, Dish> dishes = new HashMap<>();
+    private final Map<Integer, Order> orders = new HashMap<>();
 
     // Métodos para manejar clientes
     public void addCustomer(Customer customer) {
@@ -74,14 +74,30 @@ public class OrderManager {
         customer.addOrder(newOrder); // Asociar el pedido con el cliente
         orders.put(newOrder.getId(), newOrder); // Registrar el pedido en el sistema
     }
-
-    public List<Order> getOrdersByCustomer(int customerId) {
-        List<Order> customerOrders = new ArrayList<>();
-        for (Order order : orders.values()) {
-            if (order.getCustomerId() == customerId) {
-                customerOrders.add(order);
-            }
-        }
-        return customerOrders;
+    public Customer createAndAddCustomer(String firstName, String lastName, Address address) {
+        Customer customer = new Customer(firstName, lastName, address);
+        addCustomer(customer);
+        return customer;
     }
+
+    public Restaurant createAndAddRestaurant(String name, Phone phone) {
+        Restaurant restaurant = new Restaurant(name, phone);
+        addRestaurant(restaurant);
+        return restaurant;
+    }
+
+    public Dish createAndAddDish(String name, String description, double price) {
+        Dish dish = new Dish(name, description, price);
+        addDish(dish);
+        return dish;
+    }
+
+    public Address createAddress(String street, int number, int postalCode, String city) {
+        return new Address(street, number, postalCode, city);
+    }
+
+    public Phone createPhone(String number) {
+        return new Phone(number);
+    }
+
 }

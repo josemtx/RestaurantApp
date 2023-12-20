@@ -2,12 +2,12 @@ package org.ulpgc.is.model;
 
 public class Dish {
     private static int nextId = 1;
-    private int id;
+    private final int id;
     private String name;
     private String description;
-    private int price;
+    private double price;
 
-    public Dish(String name, String description, int price) {
+    public Dish(String name, String description, double price) {
         this.id = nextId++;
         this.name = name;
         this.description = description;
@@ -30,7 +30,7 @@ public class Dish {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

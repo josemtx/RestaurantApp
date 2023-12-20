@@ -23,6 +23,5 @@ public class Phone {
             this.number = "XXXX";
             return false;
         }
+    }
 }
-}
-
