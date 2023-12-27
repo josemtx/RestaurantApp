@@ -1,47 +1,21 @@
 package org.ulpgc.is.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Menu {
-    private String name;
-    private List<Dish> dishes;
-    private MenuType type;
+    private final String name;
+    private final ArrayList<Dish> dishArrayList;
+    private final MenuType menuType;
 
-    // Constructor
-    public Menu(String name, MenuType type) {
+
+    public Menu(String name, MenuType menuType) {
         this.name = name;
-        this.type = type;
-        this.dishes = new ArrayList<>();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public MenuType getType() {
-        return type;
-    }
-
-    public void setType(MenuType type) {
-        this.type = type;
+        dishArrayList = new ArrayList<>();
+        this.menuType = menuType;
     }
 
     public void addDish(Dish dish) {
-        if (dish != null && !this.dishes.contains(dish)) {
-            this.dishes.add(dish);
-        }
+        dishArrayList.add(dish);
     }
 
-    public void removeDish(Dish dish) {
-        this.dishes.remove(dish);
-    }
-
-    public List<Dish> getDishes() {
-        return new ArrayList<>(this.dishes);
-    }
 }

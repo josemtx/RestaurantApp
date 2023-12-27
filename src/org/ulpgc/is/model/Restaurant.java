@@ -4,67 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
-    private static int nextId = 1;
-    private int id;
-    private String name;
-    private Phone phone;
-    private List<Menu> menus;
+    private final String name;
+    private final Phone phone;
+    private final Menu menu;
+    private final List<Menu> menuList = new ArrayList<>();
 
-    public Restaurant(String name, Phone phone) {
-        this.id = nextId++;
+    public Restaurant(String name, Phone phone, Menu menu) {
         this.name = name;
         this.phone = phone;
-        this.menus = new ArrayList<>();
+        this.menu = menu;
     }
 
-    public Integer getId() {
-        return id;
+    public void addMenu(Menu menu) {
+        menuList.add(menu);
     }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPhone() {
+        return phone.getNumber();
     }
 
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Phone phone) {
-        this.phone = phone;
-    }
-
-    public void addMenu(Menu menu) {
-        if (menu != null && !this.menus.contains(menu)) {
-            this.menus.add(menu);
-        }
-    }
-
-    public void removeMenu(Menu menu) {
-        this.menus.remove(menu);
-    }
-
-    public List<Menu> getMenus() {
-        return new ArrayList<>(this.menus);
-    }
-
-    public Menu getMenuByName(String name) {
-        for (Menu menu : this.menus) {
-            if (menu.getName().equals(name)) {
-                return menu;
-            }
-        }
-        return null;
-    }
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phone=" + phone +
-                ", menus=" + menus +
-                '}';
-    }
 }

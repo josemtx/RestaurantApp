@@ -6,68 +6,54 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
+    public static void init(OrderManager manager) {
+        //i
+        Address address1 = new Address("Triana", 2, 35300, "Las Palmas de Gran Canaria.");
+        Address address2 = new Address("La Retama", 1, 35330, "Las Palmas de Gran Canaria.");
+        manager.addCustomer("Álvaro", "Rodríguez", address1);
+        manager.addCustomer("José", "Mataix", address2);
+        //ii
+        Phone phone1 = new Phone("+34623456111");
+        Phone phone2 = new Phone("003411111111");
+        Menu menu1 = new Menu("Carbonara", MenuType.Daily);
+        Menu menu2 = new Menu("Bolognesa", MenuType.Kids);
+        phone1.setNumber();
+        phone2.setNumber();
+        manager.addRestaurant("La Gustosa", phone1, menu1);
+        manager.addRestaurant("O'Sole Mio", phone2, menu2);
+        //iii
+        manager.addDish("Tagliatelle a la Carbonara", "Pasta Tagliatelle, Huevo, Queso Pecorino Romano," +
+                "Guanciale, Pimienta Negra", 14);
+        manager.addDish("Tortellini Bolognesa", "Tortellini, Salsa Bolonegsa(Vacuno Picado, Cebolla, " +
+                "Zanahoria, Salsa de tomate, Vino Blanco, Leche, Aceite de oliva, Sal y Pimienta)", 15);
+        manager.addDish("Pizza Margarita", "Masa Casera, Salsa de tomate, Queso Mozzarella fresco," +
+                "Hojas de Albahaca, Aceite de oliva, Sal y Pimienta", 9);
+    }
+
     public static void main(String[] args) {
         OrderManager orderManager = new OrderManager();
         init(orderManager);
-    }
+        //iv
+        Restaurant restaurant1 = orderManager.getRestaurant(0);
+        System.out.println("El primer restaurante es " + restaurant1.getName() + " y su número de teléfono es " + restaurant1.getPhone() + "\n------");
+        //v
+        Customer customer2 = orderManager.getCustomer(1);
+        System.out.println("El segundo cliente es " + customer2.getName() + " " + customer2.getSurname() + " y su dirección es la calle " + customer2.getAddress().getStreet() + " nº " + customer2.getAddress().getNumber() + " con código postal " + customer2.getAddress().getPostalCode() + " ubicado en " + customer2.getAddress().getCity() + "\n------");
+        //vi
+        Dish dish3 = orderManager.getDish(2);
+        System.out.println("El tercer plato es " + dish3.getName() + " que es " + dish3.getDescription() + ", y su precio total son " + dish3.getPrice() + "€" + "\n------");
+        //vii
+        ArrayList<Integer> plates = new ArrayList<>(Arrays.asList(1, 2));
+        ArrayList<Integer> quantities = new ArrayList<>(Arrays.asList(2, 2));
 
-    public static void init(OrderManager orderManager) {
-        // i. Create two customers with their addresses.
-        Address address1 = orderManager.createAddress("123 Main St", 101, 12345, "Metropolis");
-        Address address2 = orderManager.createAddress("456 Elm St", 202, 54321, "Gotham");
-
-        Customer customer1 = orderManager.createAndAddCustomer("John", "Doe", address1);
-        Customer customer2 = orderManager.createAndAddCustomer("Jane", "Smith", address2);
-
-        // ii. Create two restaurants with phone validation.
-        Phone phone1 = orderManager.createPhone("123456789f");
-        Phone phone2 = orderManager.createPhone("1234");
-
-        Restaurant restaurant1 = orderManager.createAndAddRestaurant("Good Food", phone1);
-        Restaurant restaurant2 = orderManager.createAndAddRestaurant("Eat Well", phone2);
-
-        if (!restaurant1.getPhone().isValid()) {
-            restaurant1.getPhone().setNumber("XXXX");
-        }
-        if (!restaurant2.getPhone().isValid()) {
-            restaurant2.getPhone().setNumber("XXXX");
-        }
-
-        // iii. Create three different dishes.
-        Dish dish1 = orderManager.createAndAddDish("Pizza", "Delicious cheese pizza",13 );
-        Dish dish2 = orderManager.createAndAddDish("Burger", "Beef burger with special sauce", 16);
-        Dish dish3 = orderManager.createAndAddDish("Pasta", "Penne pasta in tomato sauce", 11);
-
-        // The rest of the code remains the same...
-
-        orderManager.addDish(dish1);
-        orderManager.addDish(dish2);
-        orderManager.addDish(dish3);
-
-        // iv. Imprimir por pantalla los datos del primer restaurante.
-        System.out.println(restaurant1);
-
-        // v. Imprimir por pantalla los datos del segundo cliente.
-        System.out.println(customer2);
-
-        // vi. Imprimir por pantalla los datos del tercer plato.
-        System.out.println(dish3);
-
-        // vii. Crear un pedido para el primer cliente al primer restaurante con los dos últimos platos.
-        ArrayList<Integer> dishIds = new ArrayList<>(Arrays.asList(dish2.getId(), dish3.getId()));
-        ArrayList<Integer> quantities = new ArrayList<>(Arrays.asList(2, 3));
-        orderManager.createOrder(customer1.getId(), restaurant1.getId(), dishIds, quantities);
-
-        // viii. Borrar el segundo cliente.
-        orderManager.removeCustomer(customer2.getId());
-
-        // ix. Imprimir por pantalla el número de clientes.
-        System.out.println("Number of customers: " + orderManager.getNumberOfCustomers());
-
-        // x. Imprimir por pantalla el primer pedido del primer cliente, incluyendo el precio total.
-        Order firstOrder = customer1.getOrders().get(0);
-        System.out.println(firstOrder);
-        System.out.println("Total price of the order: " + firstOrder.price());
+        orderManager.order(orderManager.getCustomer(0), orderManager.getRestaurant(0), plates, quantities);
+        //viii
+        orderManager.removeCustomer(1);
+        //ix
+        System.out.println("Número de clientes: " + orderManager.customersCount() + "\n------");
+        //x
+        ArrayList<String> orderItemStringList = orderManager.getOrder(0).getOrderItemArrayList();
+        int total = orderManager.getOrder(0).price();
+        System.out.println("El pedido del primer cliente es: " + orderItemStringList + ".\n---Coste total: " + total + "€---");
     }
 }
-

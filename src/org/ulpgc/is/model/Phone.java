@@ -7,21 +7,19 @@ public class Phone {
         this.number = number;
     }
 
+    public boolean isValid() {
+        number.replaceAll("[\\s-]+", "");
+        return number.matches("(\\+34|0034)?[67]\\d{8}");
+    }
+
     public String getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public boolean isValid(){
-        number.replaceAll("[\\s-]+", "");
-        if (number.matches("\\d{9}")){
-            return true;
-        } else {
+    public void setNumber() {
+        Boolean num = isValid();
+        if (!num) {
             this.number = "XXXX";
-            return false;
         }
     }
 }
