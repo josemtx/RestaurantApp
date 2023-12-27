@@ -33,7 +33,7 @@ public class Main {
     public static void main(String[] args) {
         OrderManager orderManager = new OrderManager();
         init(orderManager);
-        //iv
+        //IV
         Restaurant restaurant1 = orderManager.getRestaurant(0);
         System.out.println("El primer restaurante es " + restaurant1.getName() + " y su número de teléfono es " + restaurant1.getPhone() + "\n------");
         //v
